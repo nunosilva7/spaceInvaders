@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour {
     [SerializeField]
@@ -14,6 +15,9 @@ public class Ship : MonoBehaviour {
 
     [SerializeField]
     int shipHealth = 3;
+
+    [SerializeField]
+    Vector3 initialPosition;
 
     float minX, maxX;
     // Start is called before the first frame update
@@ -50,6 +54,11 @@ public class Ship : MonoBehaviour {
             shipHealth--;
             if (shipHealth <= 0) {
                 Destroy (gameObject);
+                SceneManager.LoadScene("GameOver");
+            }
+            else
+            {
+                transform.position = initialPosition;
             }
 
         }

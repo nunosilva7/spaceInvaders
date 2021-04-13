@@ -10,10 +10,10 @@ public class Invader : MonoBehaviour {
     float cadencia;
 
     [SerializeField]
-    float cadenciaMin = 1.5f;
+    float cadenciaMin = 0.5f;
 
     [SerializeField]
-    float cadenciaMax = 5f;
+    float cadenciaMax = 2.5f;
 
     [SerializeField]
     float invaderHealth = 10; // numeros de disparos para matar o invasor indestrutivel
@@ -21,8 +21,13 @@ public class Invader : MonoBehaviour {
     float tempoQuepassou = 0f;
 
     private void Start () {
-        cadencia = Random.value * (cadenciaMax - cadenciaMin) + cadenciaMin;
+
+        TempoDisparo();
        
+    }
+    void TempoDisparo()
+    {
+        cadencia = Random.Range(cadenciaMin, cadenciaMax);
     }
 
     void Update () {
@@ -31,6 +36,7 @@ public class Invader : MonoBehaviour {
             if (tempoQuepassou >= cadencia) {
                 Instantiate (fire, transform.position, transform.rotation);
                 tempoQuepassou = 0f;
+                TempoDisparo();
 
             }
         }
